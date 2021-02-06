@@ -1,0 +1,38 @@
+<%= render 'layouts/header' %>
+<section class="product_list section_padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="section_tittle text-center">
+          <h2>Featured <span>Category</span></h2>
+        </div>
+      </div>
+    </div>
+    <% if @assets.any? %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="product_list_slider">
+            <div class="owl-nav">
+              <div class="hidden">
+                <%= will_paginate @assets %>
+              </div>
+<!--               <%if @assets.next_page.present?%>
+                <button type="button" role="presentation" class="owl-prev" id="owl-prev" v-on:click= "prev_page()">previous</button>
+                <button type="button" role="presentation" class="owl-next" id="owl-next" v-on:click= "next_page()">next</button>
+              <%end%> -->
+            </div>
+            <div class="single_product_list_slider">
+              <div class="row align-items-center " id="index_properties">
+                <%= render @assets %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%else%>
+      <div class="row justify-content-center">
+        Nothing Found
+      </div>
+    <%end%>
+  </div>
+</section>

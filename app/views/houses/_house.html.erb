@@ -1,0 +1,23 @@
+<div class="col-lg-3 col-sm-6">
+  <div class="">
+  <% if house.pictures.first.try(:file).try(:large).try(:url).present?%> 
+    <%= image_tag house.pictures.first.try(:file).try(:large).try(:url), :alt => 'house_image' %>
+  <%else%>
+    <!-- <%= link_to image_tag(house_path("no-house-image3.png")) %> -->
+  <%end%>
+    <div class="">
+      <h4>Owner: <%= house.owner %></h4>
+      <h4>Type: House</h4>
+      <h3>Price: <%= house.price %></h3>
+      <!-- <a href=<%=house_path(id: house.id)%> class="add_cart">Explore More</a> -->
+      <%= form_for house, :url => asset_order_path(house), :method => :post, remote: true do |f| %>
+        <div class="input-group">
+          <div class="input-group-btn">
+            <%= f.hidden_field :asset_id, value: house.id %>
+            <%= f.submit "Order", class: "" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

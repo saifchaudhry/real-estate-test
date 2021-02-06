@@ -1,0 +1,22 @@
+<div class="col-lg-3 col-sm-6">
+  <div class="">
+  <% if commercial_unit.pictures.first.try(:file).try(:large).try(:url).present?%> 
+    <%= image_tag commercial_unit.pictures.first.try(:file).try(:large).try(:url), :alt => 'commercial_unit_image' %>
+  <%else%>
+    <!-- <%= link_to image_tag(commercial_unit_path("no-commercial_unit-image3.png")) %> -->
+  <%end%>
+    <div class="">
+      <h4>Owner: <%= commercial_unit.owner %></h4>
+      <h4>Type: commercial_unit</h4>
+      <h3>Price: <%= commercial_unit.price %></h3>
+      <%= form_for commercial_unit, :url => asset_order_path(commercial_unit), :method => :post, remote: true do |f| %>
+        <div class="input-group">
+          <div class="input-group-btn">
+            <%= f.hidden_field :asset_id, value: commercial_unit.id %>
+            <%= f.submit "Order", class: "" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="col-lg-3 col-sm-6">
+  <div class="">
+  <% if complex_building.pictures.first.try(:file).try(:large).try(:url).present?%> 
+    <%= image_tag complex_building.pictures.first.try(:file).try(:large).try(:url), :alt => 'house_image' %>
+  <%else%>
+  <%end%>
+    <div class="">
+      <h4>Owner: <%= complex_building.owner %></h4>
+      <h4>Type: complex_building</h4>
+      <h3>Price: <%= complex_building.price %></h3>
+      <%= form_for complex_building, :url => asset_order_path(complex_building), :method => :post, remote: true do |f| %>
+        <div class="input-group">
+          <div class="input-group-btn">
+            <%= f.hidden_field :asset_id, value: complex_building.id %>
+            <%= f.submit "Order", class: "" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
